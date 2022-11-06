@@ -1,0 +1,288 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #f1f1f1;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-Black.ttf");
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-ExtraBold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-SemiBold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-ExtraLight.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-Thin.ttf");
+  font-weight: 100;
+}
+
+body {
+  background: #000;
+}
+
+.banner-text {
+  stroke: #fff;
+  font-family: Inter;
+  letter-spacing: 3px;
+  font-size: 100px;
+  stroke-width: 5;
+  animation: text-animtaion 5s;
+  z-index: 10;
+}
+
+@keyframes text-animtaion {
+  0% {
+    stroke: #969696;
+    fill: transparent;
+    stroke-dasharray: 0% 30%;
+    opacity: 0.8;
+  }
+
+  90% {
+    fill: transparent;
+    stroke-dasharray: 30% 0%;
+    stroke: #fff;
+  }
+
+  100% {
+    opacity: 1;
+    fill: #fff;
+  }
+}
+
+.scroll-down {
+  animation: fade 7s;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.slide1 {
+  animation: slide 1.5s linear infinite 0.5s;
+}
+.slide2 {
+  animation: slide 1.5s linear infinite 1s;
+}
+.slide3 {
+  animation: slide 1.5s linear infinite 1.5s;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) rotate(45deg);
+  }
+
+  40% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(30px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.cursor-idle::after {
+  animation: type 1s infinite;
+}
+
+@keyframes type {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  51% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.container {
+  min-height: 100vh;
+  max-width: 80%;
+  padding: 60px 0 0 0;
+  margin: 0 auto;
+}
+
+.btn-link:hover,
+.active > .btn-link {
+  text-shadow: 0 0 10px #69e0ff, 0 0 20px #69e0ff, 0 0 40px #69e0ff;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 75%;
+  padding-bottom: 55%;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 100%;
+  height: 75%;
+  left: 0;
+  top: 10%;
+  cursor: pointer;
+  transition: 0.3s;
+  background-size: auto 100% !important;
+  box-shadow: #000 0 10px 10px;
+}
+
+.active {
+  transform: translate3d(0, 0, 0);
+}
+
+.prev-1 {
+  transform: translate3d(-10%, 0, -250px);
+}
+
+.prev-2 {
+  transform: translate3d(-15%, 0, -150px);
+  filter: brightness(0.5);
+}
+
+.next-1 {
+  transform: translate3d(15%, 0, -150px);
+  filter: brightness(0.5);
+}
+
+.next-2 {
+  transform: translate3d(10%, 0, -250px);
+}
+
+.idle {
+  transform: translate3d(0, 0, -300px);
+}
+
+.angular {
+  color: #ec3d3d;
+  border-color: #ec3d3d;
+}
+.rxjs {
+  color: #85054b;
+  border-color: #85054b;
+}
+.firebase {
+  color: #ffea2c;
+  border-color: #ffea2c;
+}
+.vue3 {
+  color: #059767;
+  border-color: #059767;
+}
+.vueX {
+  color: #59eebc;
+  border-color: #59eebc;
+}
+.tailwindcss {
+  color: #09f0d1;
+  border-color: #09f0d1;
+}
+.vite {
+  color: #6413e6;
+  border-color: #6413e6;
+}
+.ngrx {
+  color: #790552;
+  border-color: #790552;
+}
+.typescript {
+  color: #0d5b9b;
+  border-color: #0d5b9b;
+}
+.mongoDB {
+  color: #0eee46;
+  border-color: #0eee46;
+}
+.jwt {
+  color: #eaf6ff;
+  border-color: #eaf6ff;
+}
+.nodejs {
+  color: #214915;
+  border-color: #214915;
+}
+.express {
+  color: #67696b;
+  border-color: #67696b;
+}
+
+.clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  max-width: 80%;
+}
