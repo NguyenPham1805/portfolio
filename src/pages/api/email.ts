@@ -18,8 +18,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     port: 587,
     secure: true,
     auth: {
-      user: 'averaysia@gmail.com',
-      pass: 'Trungnguyen1805',
+      user: process.env.NODE_MAILER_AUTH_USER,
+      pass: process.env.NODE_MAILER_AUTH_PASS,
     },
   })
 
