@@ -1,12 +1,26 @@
-import { FC, FormEvent } from 'react'
+import { FC, FormEvent, useState } from 'react'
 import { SectionProps } from '@tn/shared/types'
 import Image from 'next/image'
 import { socialLinks } from '@tn/shared/constant'
+import axios from 'axios'
 
 const Contact: FC<SectionProps> = () => {
-  const handleSubmit = (e: FormEvent) => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(e.target)
+    try {
+      const res = await axios.post(
+        '/api/email',
+        { name, email, message },
+        { headers: { 'Content-type': 'application/json' } }
+      )
+      console.log(res.data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -29,10 +43,21 @@ const Contact: FC<SectionProps> = () => {
           <form className="w-1/2 px-8" onSubmit={handleSubmit}>
             <div className="relative mt-6 sm:mt-8 border-b-quiet-dark border-b">
               <input
-                className="text-lg px-2 py-1 bg-transparent block border-none w-full outline-none peer"
+                className="px-2 text-base py-1 bg-transparent block border-none w-full outline-none peer"
                 type="text"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                autoComplete="off"
               />
-              <label className="text-lg absolute left-2 top-2 opacity-60 pointer-events-none transition-all duration-200 peer-focus:-top-4 peer-focus:text-sm  peer-focus:opacity-100 peer-focus:text-main-color">
+              <label
+                className={
+                  'text-lg absolute left-2 top-2 opacity-60 pointer-events-none transition-all duration-200 ' +
+                  (!!name
+                    ? '-top-4 text-main-color opacity-100 text-sm'
+                    : 'peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color')
+                }
+              >
                 Name
               </label>
               <span className="absolute bg-main-color h-[1px] left-0 right-0 bottom-0 scale-0 transition-all duration-500  peer-focus:scale-100"></span>
@@ -40,24 +65,51 @@ const Contact: FC<SectionProps> = () => {
 
             <div className="relative mt-6 sm:mt-8 border-b-quiet-dark border-b">
               <input
-                className="text-lg px-2 py-1 bg-transparent block border-none w-full outline-none peer"
-                type="text"
+                className="px-2 text-base py-1 bg-transparent block border-none w-full outline-none peer"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                autoComplete="off"
               />
-              <label className="text-lg absolute left-2 top-2 opacity-60 pointer-events-none transition-all duration-200 peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color">
+              <label
+                className={
+                  'text-lg absolute left-2 top-2 opacity-60 pointer-events-none transition-all duration-200 ' +
+                  (!!email
+                    ? '-top-4 text-main-color opacity-100 text-sm'
+                    : 'peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color')
+                }
+              >
                 Email
               </label>
               <span className="absolute bg-main-color h-[1px] left-0 right-0 bottom-0 scale-0 transition-all duration-500 peer-focus:scale-100"></span>
             </div>
 
             <div className="relative mt-6 sm:mt-8 border-b-quiet-dark border-b">
-              <textarea className="text-lg px-2 py-1 bg-transparent block border-none w-full outline-none peer"></textarea>
-              <label className="text-lg absolute left-2 top-2 opacity-60 pointer-events-none transition-all duration-200 peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color">
+              <textarea
+                className="px-2 text-base py-1 bg-transparent block border-none w-full outline-none peer"
+                name="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                autoComplete="off"
+              ></textarea>
+              <label
+                className={
+                  'text-lg absolute left-2 top-2 opacity-60 pointer-events-none transition-all duration-200 ' +
+                  (!!message
+                    ? '-top-4 text-main-color opacity-100 text-sm'
+                    : 'peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color')
+                }
+              >
                 Message
               </label>
               <span className="absolute bg-main-color h-[1px] left-0 right-0 bottom-0 scale-0 transition-all duration-500 peer-focus:scale-100"></span>
             </div>
 
-            <button className="mt-6 border-quiet-dark border py-1 px-2 sm:py-2 sm:px-4 hover:bg-main-color hover:border-transparent hover:text-dark transition-all">
+            <button
+              className="mt-6 border-quiet-dark border py-1 px-2 sm:py-2 sm:px-4 hover:bg-main-color hover:border-transparent hover:text-dark transition-all"
+              type="submit"
+            >
               Send
             </button>
           </form>
@@ -69,7 +121,7 @@ const Contact: FC<SectionProps> = () => {
               {socialLinks.map((item) => (
                 <li key={item.link}>
                   <a
-                    className="flex items-center gap-4"
+                    className="flex items-center gap-4 w-fit"
                     target="_blank"
                     rel="noreferrer"
                     href={item.link}

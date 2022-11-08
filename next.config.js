@@ -4,8 +4,8 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['images.weserv.nl'],
-    minimumCacheTTL: 604800
-  }
+    minimumCacheTTL: 604800,
+  },
 }
 
 module.exports = nextConfig

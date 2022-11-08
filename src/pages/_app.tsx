@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
 import '@tn/styles/style.css'
+import Script from 'next/script'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,11 +12,37 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <title>Trung Nguyen Fullstack</title>
 
-        <meta name="title" content="Trung Nguyen Fullstack" />
-        <meta name="description" content="Trung Nguyen Profile" />
+        <meta name="title" content="TrungNguyen's Portfolio" />
+        <meta name="description" content="Pham Trung Nguyen Portfolio" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="TrungNguyen's Portfolio" />
+        <meta property="og:description" content="Pham Trung Nguyen Portfolio" />
+        <meta property="og:image" content="/avatar.png" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="TrungNguyen's Portfolio" />
+        <meta property="twitter:description" content="Pham Trung Nguyen Portfolio" />
+        <meta property="twitter:image" content="/avatar.png" />
       </Head>
 
       <Component {...pageProps} />
+
+      <Script
+        strategy="lazyOnload"
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+      ></Script>
+
+      <Script id="google-analytics" strategy="lazyOnload">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+        `}
+      </Script>
     </>
   )
 }
