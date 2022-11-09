@@ -14,9 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const transportor = createTransport({
-    host: 'trungnguyendev.vercel.app',
-    port: 587,
-    secure: true,
+    service: 'Gmail',
     auth: {
       user: process.env.NODE_MAILER_AUTH_USER,
       pass: process.env.NODE_MAILER_AUTH_PASS,
