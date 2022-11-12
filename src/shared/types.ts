@@ -14,6 +14,12 @@ export interface Project {
   thumbs: string[]
 }
 
+export interface ContactMessage {
+  name: string
+  email: string
+  message: string
+}
+
 export interface SectionProps {
   currentIndex: number
 }

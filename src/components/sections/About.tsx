@@ -1,13 +1,15 @@
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
 import Marquee from 'react-fast-marquee'
+import { useTranslation } from 'next-i18next'
 
 import Typing from '../Typing'
 import { about, imageCarousels } from '@tn/shared/constant'
 import { SectionProps } from '@tn/shared/types'
 
 const About: FC<SectionProps> = ({ currentIndex }) => {
-  const title = 'Hi, my fullname is Pham Trung Nguyen'
+  const { t } = useTranslation('about')
+  const title = t('title intro')
   const [run, setRun] = useState(false)
 
   useEffect(() => {
@@ -33,25 +35,28 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
               prefixLenght={6}
               loopDelay={100}
               stepDelay={2000}
-              texts={about}
+              texts={about.map((item) => t(item))}
               wrapper="h2"
             />
           )}
 
-          <p className="text-lg sm:text-xl sm:pr-[10%]">
-            {`Have a great passion for programming, have a great dreams also related with programming.
-            Build the greates project I've ever thought of. So i always learning and learning new technologies,
-            learn everything about programming.`}
-          </p>
+          <p className="text-lg sm:text-xl sm:pr-[10%]">{t('intro')}</p>
         </div>
       </div>
 
       <div className="w-[80%] mx-auto mt-20 overflow-hidden">
-        <h3 className="text-2xl sm:text-3xl text-center">Techs I use every day</h3>
+        <h3 className="text-2xl sm:text-3xl text-center">{t('techs intro')}</h3>
 
         <Marquee className="flex mt-4" gradientColor={[0, 0, 0]}>
           {imageCarousels.map((image) => (
-            <Image width={180} height={100} src={image} alt="" key={image} />
+            <Image
+              width={180}
+              height={100}
+              src={image}
+              title={image.substring(1, image.length - 4)}
+              alt=""
+              key={image}
+            />
           ))}
         </Marquee>
       </div>

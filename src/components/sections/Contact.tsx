@@ -1,32 +1,44 @@
-import { FC, FormEvent, useState } from 'react'
-import { SectionProps } from '@tn/shared/types'
+import { FC, FormEvent, useContext, useState } from 'react'
 import Image from 'next/image'
-import { socialLinks } from '@tn/shared/constant'
 import axios from 'axios'
 
+import { socialLinks } from '@tn/shared/constant'
+import { SectionProps } from '@tn/shared/types'
+import ToastContext from '@tn/store/ToastContext'
+import { useTranslation } from 'next-i18next'
+
 const Contact: FC<SectionProps> = () => {
+  const toast = useContext(ToastContext)
+  const { t } = useTranslation('contact')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [sending, setSending] = useState(false)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSending(true)
     try {
-      const res = await axios.post(
+      await axios.post(
         '/api/email',
         { name, email, message },
         { headers: { 'Content-type': 'application/json' } }
       )
-      console.log(res.data)
+      setName('')
+      setEmail('')
+      setMessage('')
+      toast.push(t('message contact submit success'))
     } catch (error) {
-      console.error(error)
+      toast.push('message contact submit error')
+    } finally {
+      setSending(false)
     }
   }
 
   return (
     <div className="section">
       <div className="flex w-full h-screen justify-center">
-        <h1 className="text-4xl mt-32 z-10">Get in touch</h1>
+        <h1 className="text-4xl mt-32 z-10">{t('contact title')}</h1>
 
         <div className="absolute top-0 left-0 w-full h-screen overflow-hidden blur-sm brightness-[.05]">
           <video
@@ -58,7 +70,7 @@ const Contact: FC<SectionProps> = () => {
                     : 'peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color')
                 }
               >
-                Name
+                {t('contact name')}
               </label>
               <span className="absolute bg-main-color h-[1px] left-0 right-0 bottom-0 scale-0 transition-all duration-500  peer-focus:scale-100"></span>
             </div>
@@ -101,21 +113,29 @@ const Contact: FC<SectionProps> = () => {
                     : 'peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color')
                 }
               >
-                Message
+                {t('contact message')}
               </label>
               <span className="absolute bg-main-color h-[1px] left-0 right-0 bottom-0 scale-0 transition-all duration-500 peer-focus:scale-100"></span>
             </div>
 
             <button
-              className="mt-6 border-quiet-dark border py-1 px-2 sm:py-2 sm:px-4 hover:bg-main-color hover:border-transparent hover:text-dark transition-all"
+              className={`mt-6 flex gap-2 items-center border-quiet-dark border py-1 px-2 sm:py-2 sm:px-4 hover:bg-main-color hover:border-transparent hover:text-dark transition-all ${
+                name === '' || email === '' || message === ''
+                  ? 'pointer-events-none bg-opacity-60'
+                  : ''
+              }`}
               type="submit"
+              disabled={name === '' || email === '' || message === ''}
             >
-              Send
+              {t('contact btn')}
+              {sending && (
+                <div className="border border-transparent border-t-main-color border-b-main-color rounded-full w-4 h-4 spin"></div>
+              )}
             </button>
           </form>
 
           <div className="w-1/2">
-            <h3 className="text-2xl">Other places</h3>
+            <h3 className="text-2xl">{t('Other places')}</h3>
 
             <ul className="flex flex-col px-8 mt-8 gap-6">
               {socialLinks.map((item) => (

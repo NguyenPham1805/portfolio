@@ -4,8 +4,11 @@ import { SectionProps } from '@tn/shared/types'
 import { projects } from '@tn/shared/constant'
 import FadeCarousel from '../FadeCarousel'
 import TDCarousel from '../TDCarousel'
+import { useTranslation } from 'next-i18next'
 
 const Project: FC<SectionProps> = () => {
+  const { t } = useTranslation('projects')
+
   return (
     <div className="section">
       <FadeCarousel autoPlay={false}>
@@ -35,7 +38,7 @@ const Project: FC<SectionProps> = () => {
               </h2>
 
               <p className={`text-base sm:text-lg ${i % 2 !== 0 && 'text-right'}`}>
-                {project.description}
+                {t(project.description)}
               </p>
 
               <p className={`text-base sm:text-lg flex gap-1 ${i % 2 !== 0 && 'text-right'}`}>
@@ -63,7 +66,7 @@ const Project: FC<SectionProps> = () => {
               </p>
 
               <div className="flex gap-2 items-center flex-wrap">
-                <h4 className="text-xl">Technology: </h4>
+                <h4 className="text-xl">{t('techs used')}: </h4>
                 {project.tags.map((tag) => (
                   <span
                     className={`${tag} text-xs sm:text-sm flex items-center px-1 py-[1px] capitalize border`}

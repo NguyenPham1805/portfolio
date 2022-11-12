@@ -1,20 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createTransport, SendMailOptions } from 'nodemailer'
+import { ContactMessage } from '@tn/shared/types'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const payload = req.body
-  const email: SendMailOptions = {
-    from: payload.email,
-    to: 'averaysia@gmail.com',
-    subject: `From ${payload.name} contact`,
+  const { name, email, message } = JSON.parse(req.body) as ContactMessage
+
+  if (name === '' || email === '' || message === '') {
+    res.status(400).json({ message: 'failed' })
+    return
+  }
+
+  const emailOption: SendMailOptions = {
+    from: email,
+    to: process.env.NODE_MAILER_AUTH_USER,
+    subject: `From ${name} contact`,
     html: `
-      <b>${payload.name}</b>
-      <p>${payload.message}</p>
+      <b>${name}</b>
+      <p>${message}</p>
     `,
   }
 
   const transportor = createTransport({
-    service: 'Gmail',
+    service: 'gmail',
+    secure: true,
     auth: {
       user: process.env.NODE_MAILER_AUTH_USER,
       pass: process.env.NODE_MAILER_AUTH_PASS,
@@ -22,12 +30,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   })
 
   try {
-    const result = await transportor.sendMail(email)
+    const result = await transportor.sendMail(emailOption)
     console.log('message id:', result.messageId)
     res.status(200).json({ message: 'success', id: result.messageId })
   } catch (error) {
-    console.error(error)
-    res.status(400).json({ message: 'failed' })
+    res.status(400).json({ message: 'failed', error })
   }
 }
 

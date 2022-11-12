@@ -4,76 +4,68 @@ import Projects from '@tn/components/sections/Projects'
 import Contact from '@tn/components/sections/Contact'
 import { Project, Section } from './types'
 
+export const langs = [
+  { locale: 'vi', name: 'Tiếng Việt', thumb: '/vietnamese.jpg' },
+  { locale: 'en', name: 'English', thumb: '/english.jpg' },
+]
+
 export const imageCarousels = [
-  '/angular.png',
-  '/typescript.png',
-  '/nodejs.png',
-  '/react.png',
-  '/nextjs.png',
-  '/vue.png',
-  '/firebase.png',
-  '/tailwindcss.png',
-  '/vite.png',
-  '/rxjs.png',
+  '/carousel/angular.png',
+  '/carousel/typescript.png',
+  '/carousel/nodejs.png',
+  '/carousel/react.png',
+  '/carousel/nextjs.png',
+  '/carousel/vue.png',
+  '/carousel/firebase.png',
+  '/carousel/tailwindcss.png',
+  '/carousel/vite.png',
+  '/carousel/rxjs.png',
 ]
 
 export const projects: Project[] = [
   {
     title: 'Niwfy',
     classColor: 'text-orange-500',
-    description:
-      'A comic website made with Angular in 2 month. Api crawl form nettruyen and database from Firebase .\n Some features such as: searching, authentication with Firebase, read comic, rating, comment/reply.',
+    description: 'niwfy description',
     tags: ['angular', 'rxjs', 'ngrx', 'firebase', 'nodejs'],
     linkGit: 'https://github.com/NguyenPham1805/Niwfy',
     linkDemo: 'https://niwfy.herokuapp.com',
     thumbs: [
-      '/niwfy-thumb1.PNG',
-      '/niwfy-thumb2.PNG',
-      '/niwfy-thumb3.PNG',
-      '/niwfy-thumb4.PNG',
-      '/niwfy-thumb5.PNG',
-      '/niwfy-thumb6.PNG',
+      '/slide/niwfy-thumb1.PNG',
+      '/slide/niwfy-thumb2.PNG',
+      '/slide/niwfy-thumb3.PNG',
+      '/slide/niwfy-thumb4.PNG',
+      '/slide/niwfy-thumb5.PNG',
+      '/slide/niwfy-thumb6.PNG',
     ],
   },
   {
     title: 'Rem',
     classColor: 'text-cyan-500',
-    description:
-      'Rem is my wif..., sorry I said some fool. Rem is a movie website made by Vue. Api get from a share api of unknow persion in group IT.\n Some features such as: searching/filter, authentication with Firebase, watch movie, reaction/rating/comment/reply.',
+    description: 'rem description',
     tags: ['vue3', 'vueX', 'vite', 'tailwindcss', 'firebase', 'typescript', 'nodejs'],
     linkGit: 'https://github.com/NguyenPham1805/rem',
     linkDemo: 'https://remlove.herokuapp.com',
     thumbs: [
-      '/rem-thumb1.PNG',
-      '/rem-thumb2.PNG',
-      '/rem-thumb3.PNG',
-      '/rem-thumb4.PNG',
-      '/rem-thumb5.PNG',
+      '/slide/rem-thumb1.PNG',
+      '/slide/rem-thumb2.PNG',
+      '/slide/rem-thumb3.PNG',
+      '/slide/rem-thumb4.PNG',
+      '/slide/rem-thumb5.PNG',
     ],
   },
-  // {
-  //   title: 'Anime MV',
-  //   classColor: 'text-yellow-400',
-  //   description:
-  //     'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, omnis. Cumque doloribus, ullam praesentium, doloremque eaque deleniti blanditiis totam minima provident quae est tempora ipsam magnam? Nihil ea saepe ut possimus tempora! Delectus repudiandae sit eum, reprehenderit aliquam alias doloremque odio dolorum impedit! Impedit distinctio ea nihil? Ipsam, dicta repudiandae!',
-  //   tags: ['angular'],
-  //   linkGit: 'https://github.com/NguyenPham1805/animemv',
-  //   linkDemo: 'https://animemv.netlify.app',
-  //   thumbs: ['/slide1.jpg', '/slide2.jpg', '/slide3.jpg', '/slide4.jpg', '/slide5.jpg'],
-  // },
   {
     title: 'Ebook',
     classColor: 'text-fuchsia-900',
-    description:
-      'Ebook is a MEAN stack social network websie. Created learning Node and Typescript 2 weeks :)). Currently the project is running on local.\n With some main features: CURD api, authentication with jwt',
+    description: 'ebook description',
     tags: ['nodejs', 'express', 'jwt', 'angular', 'mongoDB', 'typescript'],
     linkGit: 'https://github.com/NguyenPham1805/express-typescript',
     thumbs: [
-      '/eyebook-thumb1.PNG',
-      '/eyebook-thumb2.PNG',
-      '/eyebook-thumb3.PNG',
-      '/eyebook-thumb4.PNG',
-      '/eyebook-thumb5.PNG',
+      '/slide/eyebook-thumb1.PNG',
+      '/slide/eyebook-thumb2.PNG',
+      '/slide/eyebook-thumb3.PNG',
+      '/slide/eyebook-thumb4.PNG',
+      '/slide/eyebook-thumb5.PNG',
     ],
   },
 ]
@@ -101,7 +93,7 @@ export const sections: Section[] = [
   },
 ]
 
-export const about = ["I'm a web developer", 'gamer challenger', 'supemium wibu', 'single']
+export const about = ['about1', 'about2', 'about3', 'about4']
 
 export const socialLinks = [
   {

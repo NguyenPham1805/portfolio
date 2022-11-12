@@ -1,8 +1,11 @@
-import { SectionProps } from '@tn/shared/types'
+import { useTranslation } from 'next-i18next'
 import { FC, memo } from 'react'
+import { SectionProps } from '@tn/shared/types'
 import Canvas from '../Canvas'
 
 const Banner: FC<SectionProps> = () => {
+  const { t } = useTranslation('banner')
+
   return (
     <div className="section">
       <Canvas />
@@ -15,11 +18,13 @@ const Banner: FC<SectionProps> = () => {
           textAnchor="middle"
           fill="#fff"
         >
-          Trung Nguyen
+          {t('my short name')}
         </text>
       </svg>
 
-      <h2 className="w-full z-10 text-center absolute top-[55%] text-3xl left-1/2 -translate-x-1/2">{`I'm a web developer`}</h2>
+      <h2 className="w-full z-10 text-center absolute top-[55%] text-3xl left-1/2 -translate-x-1/2">
+        {t('who i am')}
+      </h2>
 
       <a
         className="z-10 p-1 absolute top-[70%] left-1/2 -translate-x-1/2 scroll-down"

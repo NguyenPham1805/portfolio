@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   color: #f1f1f1;
+  transition: all 0.3s;
 }
 
 @tailwind base;
@@ -11,55 +12,55 @@
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-Black.ttf");
+  src: url('/fonts/Inter-Black.ttf');
   font-weight: 900;
 }
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-ExtraBold.ttf");
+  src: url('/fonts/Inter-ExtraBold.ttf');
   font-weight: 800;
 }
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-Bold.ttf");
+  src: url('/fonts/Inter-Bold.ttf');
   font-weight: 700;
 }
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-SemiBold.ttf");
+  src: url('/fonts/Inter-SemiBold.ttf');
   font-weight: 600;
 }
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-Medium.ttf");
+  src: url('/fonts/Inter-Medium.ttf');
   font-weight: 500;
 }
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-Regular.ttf");
+  src: url('/fonts/Inter-Regular.ttf');
   font-weight: 400;
 }
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-Light.ttf");
+  src: url('/fonts/Inter-Light.ttf');
   font-weight: 300;
 }
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-ExtraLight.ttf");
+  src: url('/fonts/Inter-ExtraLight.ttf');
   font-weight: 200;
 }
 
 @font-face {
   font-family: Inter;
-  src: url("/fonts/Inter-Thin.ttf");
+  src: url('/fonts/Inter-Thin.ttf');
   font-weight: 100;
 }
 
@@ -285,4 +286,14 @@ body {
   text-overflow: ellipsis;
   word-break: break-word;
   max-width: 80%;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

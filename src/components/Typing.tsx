@@ -21,20 +21,21 @@ const Typing: React.FC<TypingProps> = ({
   wait = 0,
   prefixLenght = 0,
   className,
-  wrapper = 'p'
+  wrapper = 'p',
 }) => {
   const [isTyping, setIsTyping] = useState(false)
   const typingRef = useRef<Element>(null)
-  const run = useRef(false)
   const [done, setDone] = useState(true)
   const Component = wrapper as any
+  const timeoutIds = useRef<NodeJS.Timeout[]>([])
 
   useEffect(() => {
     const el = typingRef.current
-    if (!run.current || !el) {
-      run.current = !run.current
-      return
-    }
+    if (!el) return
+    el.textContent = ''
+    timeoutIds.current.forEach((timeoutId) => {
+      if (timeoutId) clearTimeout(timeoutId)
+    })
 
     let l = 0,
       i = 0
@@ -46,9 +47,11 @@ const Typing: React.FC<TypingProps> = ({
       } else {
         el.textContent = el.textContent!.substring(0, el.textContent!.length - 1)
         i++
-        setTimeout(() => {
+        const timeoutid = setTimeout(() => {
           removingWord(text)
         }, delay)
+
+        timeoutIds.current.push(timeoutid)
       }
     }
 
@@ -57,22 +60,25 @@ const Typing: React.FC<TypingProps> = ({
         setIsTyping(false)
         if (!loop) return setDone(true)
         if (l >= texts.length - 1 && loopDelay) {
-          setTimeout(() => {
+          const timeoutid = setTimeout(() => {
             removingWord(text)
             setIsTyping(true)
           }, loopDelay)
+          timeoutIds.current.push(timeoutid)
         } else {
-          setTimeout(() => {
+          const timeoutid = setTimeout(() => {
             removingWord(text)
             setIsTyping(true)
           }, stepDelay)
+          timeoutIds.current.push(timeoutid)
         }
       } else {
         el.textContent += text[i]
         i++
-        setTimeout(() => {
+        const timeoutid = setTimeout(() => {
           typingWord(text)
         }, delay)
+        timeoutIds.current.push(timeoutid)
       }
     }
 
@@ -87,13 +93,14 @@ const Typing: React.FC<TypingProps> = ({
       typingWord(texts[l])
     }
 
-    setTimeout(() => {
+    const timeoutid = setTimeout(() => {
       typeNextLine()
       setDone(false)
     }, wait)
+    timeoutIds.current.push(timeoutid)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [texts])
 
   return (
     <Component

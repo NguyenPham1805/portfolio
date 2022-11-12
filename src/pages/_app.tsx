@@ -1,8 +1,11 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-
-import '@tn/styles/style.css'
 import Script from 'next/script'
+import { appWithTranslation } from 'next-i18next'
+import nextI18nextConfig from 'next-i18next.config'
+
+import ToastContext from '@tn/store/ToastContext'
+import '@tn/styles/style.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -26,7 +29,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="twitter:image" content="/avatar.png" />
       </Head>
 
-      <Component {...pageProps} />
+      <ToastContext.Provider value={[]}>
+        <Component {...pageProps} />
+      </ToastContext.Provider>
 
       <Script
         strategy="lazyOnload"
@@ -47,4 +52,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp, nextI18nextConfig)
