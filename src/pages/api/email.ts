@@ -22,7 +22,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const transportor = createTransport({
     service: 'gmail',
-    secure: true,
     auth: {
       user: process.env.NODE_MAILER_AUTH_USER,
       pass: process.env.NODE_MAILER_AUTH_PASS,
