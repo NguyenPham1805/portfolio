@@ -13,8 +13,9 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
   const [run, setRun] = useState(false)
 
   useEffect(() => {
+    if (run) return
     if (currentIndex === 1) setRun(true)
-  }, [currentIndex])
+  }, [currentIndex, run])
 
   return (
     <div className="section">

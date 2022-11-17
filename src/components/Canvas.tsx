@@ -125,7 +125,7 @@ const Canvas = () => {
       animationLoop()
     }
 
-    init()
+    setTimeout(init, 2000)
 
     window.addEventListener('resize', resizeResset)
   }, [])
