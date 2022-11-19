@@ -32,10 +32,11 @@ const Typing: React.FC<TypingProps> = ({
   useEffect(() => {
     const el = typingRef.current
     if (!el) return
-    el.textContent = ''
+    setIsTyping(false)
     timeoutIds.current.forEach((timeoutId) => {
       if (timeoutId) clearTimeout(timeoutId)
     })
+    el.textContent = ''
 
     let l = 0,
       i = 0

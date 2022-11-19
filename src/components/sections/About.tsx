@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import Marquee from 'react-fast-marquee'
 import { useTranslation } from 'next-i18next'
 
@@ -9,13 +9,16 @@ import { SectionProps } from '@tn/shared/types'
 
 const About: FC<SectionProps> = ({ currentIndex }) => {
   const { t } = useTranslation('about')
-  const title = t('title intro')
   const [run, setRun] = useState(false)
+  const title = useMemo(() => [t('title intro')], [t])
+  const texts = useMemo(() => about.map((item) => t(item)), [t])
 
   useEffect(() => {
-    if (run) return
-    if (currentIndex === 1) setRun(true)
-  }, [currentIndex, run])
+    if (run || currentIndex !== 1) return
+    setRun(true)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex])
 
   return (
     <div className="section">
@@ -26,7 +29,7 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
 
         <div className="flex gap-4 w-[75vw] md:w-[60vw] flex-col">
           {run && (
-            <Typing className="text-xl sm:text-2xl" loop={false} texts={[title]} wrapper="h2" />
+            <Typing className="text-xl sm:text-2xl" loop={false} texts={title} wrapper="h2" />
           )}
 
           {run && (
@@ -36,7 +39,7 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
               prefixLenght={6}
               loopDelay={100}
               stepDelay={2000}
-              texts={about.map((item) => t(item))}
+              texts={texts}
               wrapper="h2"
             />
           )}
