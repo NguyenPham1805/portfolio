@@ -10,7 +10,7 @@ import { SectionProps } from '@tn/shared/types'
 const About: FC<SectionProps> = ({ currentIndex }) => {
   const { t } = useTranslation('about')
   const [run, setRun] = useState(false)
-  const title = useMemo(() => [t('title intro')], [t])
+  const title = useMemo(() => [t('Hi, my fullname is Pham Trung Nguyen')], [t])
   const texts = useMemo(() => about.map((item) => t(item)), [t])
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
           {run && (
             <Typing
               className="text-3xl sm:text-2xl text-main-color"
-              wait={title.length * 100 + 2000}
+              wait={title[0].length * 100 + 1000}
               prefixLenght={6}
               loopDelay={100}
               stepDelay={2000}

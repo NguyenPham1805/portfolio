@@ -18,12 +18,12 @@ const Banner: FC<SectionProps> = () => {
           textAnchor="middle"
           fill="#fff"
         >
-          {t('my short name')}
+          {t('Trung Nguyen')}
         </text>
       </svg>
 
       <h2 className="w-full z-10 text-center absolute top-[55%] text-3xl left-1/2 -translate-x-1/2">
-        {t('who i am')}
+        {t(`I'm a web developer`)}
       </h2>
 
       <a

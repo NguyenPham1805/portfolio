@@ -32,7 +32,7 @@ const Typing: React.FC<TypingProps> = ({
   useEffect(() => {
     const el = typingRef.current
     if (!el) return
-    setIsTyping(false)
+    setDone(true)
     timeoutIds.current.forEach((timeoutId) => {
       if (timeoutId) clearTimeout(timeoutId)
     })
@@ -98,6 +98,7 @@ const Typing: React.FC<TypingProps> = ({
       typeNextLine()
       setDone(false)
     }, wait)
+
     timeoutIds.current.push(timeoutid)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

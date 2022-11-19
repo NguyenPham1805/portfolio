@@ -66,7 +66,7 @@ const Project: FC<SectionProps> = () => {
               </p>
 
               <div className="flex gap-2 items-center flex-wrap">
-                <h4 className="text-xl">{t('techs used')}: </h4>
+                <h4 className="text-xl">{t('Technologys')}: </h4>
                 {project.tags.map((tag) => (
                   <span
                     className={`${tag} text-xs sm:text-sm flex items-center px-1 py-[1px] capitalize border`}

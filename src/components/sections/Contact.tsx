@@ -27,9 +27,9 @@ const Contact: FC<SectionProps> = () => {
       setName('')
       setEmail('')
       setMessage('')
-      toast.push(t('message contact submit success'))
+      toast.push(t('Email send failed! Please check all field is valid!'))
     } catch (error) {
-      toast.push('message contact submit error')
+      toast.push('Send successfully, thanks for contacting!')
     } finally {
       setSending(false)
     }
@@ -70,7 +70,7 @@ const Contact: FC<SectionProps> = () => {
                     : 'peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color')
                 }
               >
-                {t('contact name')}
+                {t('Name')}
               </label>
               <span className="absolute bg-main-color h-[1px] left-0 right-0 bottom-0 scale-0 transition-all duration-500  peer-focus:scale-100"></span>
             </div>
@@ -113,7 +113,7 @@ const Contact: FC<SectionProps> = () => {
                     : 'peer-focus:-top-4 peer-focus:text-sm peer-focus:opacity-100 peer-focus:text-main-color')
                 }
               >
-                {t('contact message')}
+                {t('Message')}
               </label>
               <span className="absolute bg-main-color h-[1px] left-0 right-0 bottom-0 scale-0 transition-all duration-500 peer-focus:scale-100"></span>
             </div>
@@ -127,7 +127,7 @@ const Contact: FC<SectionProps> = () => {
               type="submit"
               disabled={name === '' || email === '' || message === ''}
             >
-              {t('contact btn')}
+              {t('Send')}
               {sending && (
                 <div className="border border-transparent border-t-main-color border-b-main-color rounded-full w-4 h-4 spin"></div>
               )}

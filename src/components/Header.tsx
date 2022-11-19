@@ -134,7 +134,7 @@ const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
         </div>
 
         <a href="/TrungNguyenCV.pdf" download="TrungNguyenCV">
-          {t('download cv')}
+          {t('Download CV')}
         </a>
       </div>
     </nav>
