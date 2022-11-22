@@ -38,7 +38,7 @@ const Contact: FC<SectionProps> = () => {
   return (
     <div className="section">
       <div className="flex w-full h-screen justify-center">
-        <h1 className="text-4xl mt-32 z-10">{t('contact title')}</h1>
+        <h1 className="text-4xl mt-32 z-10">{t('Get in touch')}</h1>
 
         <div className="absolute top-0 left-0 w-full h-screen overflow-hidden blur-sm brightness-[.05]">
           <video

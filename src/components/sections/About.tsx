@@ -49,7 +49,7 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
       </div>
 
       <div className="w-[80%] mx-auto mt-20 overflow-hidden">
-        <h3 className="text-2xl sm:text-3xl text-center">{t('techs intro')}</h3>
+        <h3 className="text-2xl sm:text-3xl text-center">{t('Techs I use every day')}</h3>
 
         <Marquee className="flex mt-4" gradientColor={[0, 0, 0]}>
           {imageCarousels.map((image) => (
