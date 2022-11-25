@@ -4,15 +4,27 @@ interface CarouselIndicatorProps {
   items: any[]
   currentIndex: number
   handleChangeIndex: Function
+  className?: string
+  position?: {
+    top?: number
+    right?: number
+    left?: number
+    bottom?: number
+  }
 }
 
 const CarouselIndicator: FC<CarouselIndicatorProps> = ({
   items,
   handleChangeIndex,
-  currentIndex
+  currentIndex,
+  className = 'bottom-20',
+  position,
 }) => {
   return (
-    <nav className="flex justify-center absolute z-10 bottom-6 w-full">
+    <nav
+      className={'flex justify-center absolute z-10 w-full ' + className}
+      style={{ ...position }}
+    >
       <ul className="flex gap-4 sm:gap-6">
         {items.map((_, i) => (
           <li key={i}>

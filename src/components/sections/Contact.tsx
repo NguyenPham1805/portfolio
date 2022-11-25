@@ -36,9 +36,9 @@ const Contact: FC<SectionProps> = () => {
   }
 
   return (
-    <div className="section">
+    <div className="section lazy">
       <div className="flex w-full h-screen justify-center">
-        <h1 className="text-4xl mt-32 z-10">{t('Get in touch')}</h1>
+        <h1 className="text-4xl mt-24 md:mt-32 z-10">{t('Get in touch')}</h1>
 
         <div className="absolute top-0 left-0 w-full h-screen overflow-hidden blur-sm brightness-[.05]">
           <video
@@ -51,8 +51,8 @@ const Contact: FC<SectionProps> = () => {
           ></video>
         </div>
 
-        <div className="flex items-center w-full h-screen top-0 left-0 gap-4 absolute z-10">
-          <form className="w-1/2 px-8" onSubmit={handleSubmit}>
+        <div className="flex flex-col px-[5%] md:flex-row items-center justify-center w-full h-screen top-0 left-0 gap-6 md:gap-4 absolute z-10">
+          <form className="w-full md:w-1/2 px-4 sm:px-8" onSubmit={handleSubmit}>
             <div className="relative mt-6 sm:mt-8 border-b-quiet-dark border-b">
               <input
                 className="px-2 text-base py-1 bg-transparent block border-none w-full outline-none peer"
@@ -134,10 +134,10 @@ const Contact: FC<SectionProps> = () => {
             </button>
           </form>
 
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <h3 className="text-2xl">{t('Other places')}</h3>
 
-            <ul className="flex flex-col px-8 mt-8 gap-6">
+            <ul className="flex justify-center md:justify-start md:flex-col px-4 sm:px-8 mt-4 sm:mt-8 gap-6">
               {socialLinks.map((item) => (
                 <li key={item.link}>
                   <a
@@ -147,7 +147,7 @@ const Contact: FC<SectionProps> = () => {
                     href={item.link}
                   >
                     <Image width={50} height={50} src={item.icon} alt="" />
-                    <span>{item.title}</span>
+                    <span className="hidden md:inline">{item.title}</span>
                   </a>
                 </li>
               ))}

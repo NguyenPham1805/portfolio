@@ -1,10 +1,11 @@
-import { FC, useEffect, memo, useState, useMemo, useRef } from 'react'
+import { FC, useEffect, memo, useState, useMemo } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import { langs, sections } from '@tn/shared/constant'
 import ClickOutside from './ClickOutside'
 import { useTranslation } from 'next-i18next'
+import ArrowDown from './icons/ArrowDown'
 
 interface HeaderProps {
   section: number
@@ -13,10 +14,9 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
   const router = useRouter()
   const { t } = useTranslation('header')
-  const navRef = useRef<HTMLElement>(null)
+  const [switchLangOpen, setSwtichLangOpen] = useState(false)
   const [animateBarWidth, setAnimateBarWidth] = useState(0)
   const [animateBarPosition, setAnimateBarPosition] = useState(0)
-  const [switchLangOpen, setSwtichLangOpen] = useState(false)
 
   const currentLang = useMemo(
     () => langs.find((lang) => lang.locale === (router.locale || 'en')),
@@ -24,7 +24,7 @@ const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
   )
 
   const handleActiveNavItem = () => {
-    const navItemActive = document.querySelector<HTMLLIElement>('li.active')
+    const navItemActive = document.querySelector<HTMLLIElement>('.header li.active')
     setAnimateBarWidth(navItemActive?.offsetWidth || 0)
     setAnimateBarPosition(navItemActive?.offsetLeft || 0)
   }
@@ -51,7 +51,7 @@ const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
   }
 
   useEffect(() => {
-    const navItems = document.querySelectorAll<HTMLLIElement>('.nav-item')
+    const navItems = document.querySelectorAll<HTMLLIElement>('.header .nav-item')
 
     navItems.forEach((item) => {
       item?.addEventListener('mouseover', () => {
@@ -63,21 +63,13 @@ const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
     })
   }, [])
 
-  useEffect(() => {
-    handleActiveNavItem()
-
-    if (currentIndex > 0) navRef.current?.classList.add('bg-so-dark')
-    else navRef.current?.classList.remove('bg-so-dark')
-  }, [currentIndex])
+  useEffect(handleActiveNavItem, [currentIndex])
 
   return (
-    <nav
-      className="flex w-full h-14 px-[5%] fixed items-center justify-between z-10 transition-all duration-500"
-      ref={navRef}
-    >
-      <h1 className="text-3xl font-thin">Trung Nguyen</h1>
+    <nav className="header flex lazy w-full h-14 px-[5%] fixed items-center justify-between z-10 transition-all duration-500">
+      <h1 className="text-2xl mb:text-3xl font-thin">Trung Nguyen</h1>
 
-      <ul className="h-full relative flex">
+      <ul className="h-full relative hidden md:flex">
         {sections.map((section, index) => {
           return (
             <li
@@ -85,7 +77,7 @@ const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
               key={section.path}
             >
               <a
-                className="h-full px-3 flex items-center capitalize text-xl btn-link"
+                className="h-full px-3 flex items-center capitalize text-xl btn-link text-center"
                 href={`#${section.path}`}
               >
                 {t(section.name)}
@@ -100,14 +92,20 @@ const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
         ></div>
       </ul>
 
-      <div className="flex h-full items-center gap-5">
+      <div className="flex h-full items-center mb:gap-5">
         <div className="relative">
           <button
-            className="flex items-center gap-2 border rounded-sm px-2 py-1"
+            className="flex mb:items-center mb:gap-2 mb:border mb:rounded-sm px-2 py-1"
+            title={t('switch language')}
             onClick={handleSwitchLangOpen}
           >
-            {currentLang!.name}
+            <span className="hidden mb:inline">{currentLang!.name}</span>
+
             <Image src={currentLang!.thumb} width={25} height={15} alt="" />
+
+            <div className="mb:hidden">
+              <ArrowDown color="#fff" />
+            </div>
           </button>
 
           {switchLangOpen && (
@@ -123,7 +121,7 @@ const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
                         <div className="w-fit h-fit flex-shrink-0 relative">
                           <Image src={thumb} alt="" width={25} height={15} />
                         </div>
-                        <span>{name}</span>
+                        <span className="text-center">{name}</span>
                       </button>
                     </li>
                   ))}

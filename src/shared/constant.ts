@@ -3,6 +3,10 @@ import About from '@tn/components/sections/About'
 import Projects from '@tn/components/sections/Projects'
 import Contact from '@tn/components/sections/Contact'
 import { Project, Section } from './types'
+import Home from '@tn/components/icons/Home'
+import Star from '@tn/components/icons/Star'
+import Rocket from '@tn/components/icons/Rocket'
+import Mail from '@tn/components/icons/Mail'
 
 export const langs = [
   { locale: 'vi', name: 'Tiếng Việt', thumb: '/vietnamese.jpg' },
@@ -75,21 +79,25 @@ export const sections: Section[] = [
     name: 'hello world',
     path: 'hello',
     section: Banner,
+    icon: Home,
   },
   {
     name: 'about me',
     path: 'about',
     section: About,
+    icon: Star,
   },
   {
     name: 'projects',
     path: 'projects',
     section: Projects,
+    icon: Rocket,
   },
   {
     name: 'contact',
     path: 'contact',
     section: Contact,
+    icon: Mail,
   },
 ]
 

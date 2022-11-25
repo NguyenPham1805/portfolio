@@ -68,6 +68,10 @@ body {
   background: #000;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .banner-text {
   stroke: #fff;
   font-family: Inter;
@@ -295,5 +299,23 @@ body {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+.lazy {
+  animation: lazy 4s;
+}
+
+@keyframes lazy {
+  0% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

@@ -2,6 +2,7 @@ export interface Section {
   name: string
   path: string
   section: any
+  icon: any
 }
 
 export interface Project {

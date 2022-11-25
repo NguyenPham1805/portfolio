@@ -7,6 +7,7 @@ import { sections } from '@tn/shared/constant'
 import Header from '@tn/components/Header'
 import { Section } from '@tn/shared/types'
 import Toast from '@tn/components/Toast'
+import Footer from '@tn/components/Footer'
 
 const Home: NextPage<{ sections: Section[] }> = () => {
   const [section, setSection] = useState(0)
@@ -15,8 +16,6 @@ const Home: NextPage<{ sections: Section[] }> = () => {
   return (
     <Fragment>
       <Header section={section} />
-
-      <Toast />
 
       <ReactFullpage
         afterLoad={(_, destination) => setSection(destination.index)}
@@ -32,6 +31,10 @@ const Home: NextPage<{ sections: Section[] }> = () => {
           </ReactFullpage.Wrapper>
         )}
       />
+
+      <Footer section={section} />
+
+      <Toast />
     </Fragment>
   )
 }

@@ -22,12 +22,12 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
 
   return (
     <div className="section">
-      <div className="flex flex-col gap-8 sm:flex-row justify-center items-center px-[5%]">
-        <div className="rounded-full overflow-hidden">
-          <Image width={225} height={225} src="/avatar.png" alt="" />
+      <div className="flex flex-col gap-2 md:gap-8 sm:flex-row justify-center items-center sm:px-[5%]">
+        <div className="flex-shrink-0 rounded-full overflow-hidden w-[130px] h-[130px] sm:w-[200px] sm:h-[200px] md:w-[255px] h-md:[255px]">
+          <Image width={255} height={255} src="/avatar.png" alt="" />
         </div>
 
-        <div className="flex gap-4 w-[75vw] md:w-[60vw] flex-col">
+        <div className="flex sm:gap-3 w-[85vw] md:w-[60vw] flex-col">
           {run && (
             <Typing className="text-xl sm:text-2xl" loop={false} texts={title} wrapper="h2" />
           )}
@@ -44,23 +44,27 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
             />
           )}
 
-          <p className="text-lg sm:text-xl sm:pr-[10%]">{t('intro')}</p>
+          <p className="sm:text-lg md:text-xl sm:pr-[10%]">{t('intro')}</p>
         </div>
       </div>
 
-      <div className="w-[80%] mx-auto mt-20 overflow-hidden">
+      <div className="w-[90%] sm:w-[80%] mx-auto mt-4 sm:mt-10 md:mt-20 overflow-hidden">
         <h3 className="text-2xl sm:text-3xl text-center">{t('Techs I use every day')}</h3>
 
         <Marquee className="flex mt-4" gradientColor={[0, 0, 0]}>
           {imageCarousels.map((image) => (
-            <Image
-              width={180}
-              height={100}
-              src={image}
-              title={image.substring(1, image.length - 4)}
-              alt=""
+            <div
+              className="flex-shrink-0 w-[117px] h-[65px] sm:w-[144px] sm:h-[80px] md:w-[180px] h-md:[100px]"
               key={image}
-            />
+            >
+              <Image
+                width={180}
+                height={100}
+                src={image}
+                title={image.substring(1, image.length - 4)}
+                alt=""
+              />
+            </div>
           ))}
         </Marquee>
       </div>
