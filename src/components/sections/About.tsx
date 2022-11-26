@@ -23,7 +23,7 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
   return (
     <div className="section">
       <div className="flex flex-col gap-2 md:gap-8 sm:flex-row justify-center items-center sm:px-[5%]">
-        <div className="flex-shrink-0 rounded-full overflow-hidden w-[130px] h-[130px] sm:w-[200px] sm:h-[200px] md:w-[255px] h-md:[255px]">
+        <div className="flex-shrink-0 h-auto rounded-full overflow-hidden w-[130px] sm:w-[200px] md:w-[255px]">
           <Image width={255} height={255} src="/avatar.png" alt="" />
         </div>
 

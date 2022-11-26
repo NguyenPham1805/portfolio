@@ -51,7 +51,7 @@ const FadeCarousel: FC<FadeCarouselProps> = ({
     <div className="w-screen h-screen overflow-hidden relative">
       {children.map((child, i) => (
         <div
-          className={`absolute justify-center text-3xl items-center w-full h-full transition-all duration-300 ${slideClassname(
+          className={`absolute fade justify-center text-3xl items-center w-full h-full transition-all duration-300 ${slideClassname(
             i
           )}`}
           key={i}

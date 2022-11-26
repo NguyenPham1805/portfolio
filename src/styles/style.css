@@ -103,15 +103,29 @@ body {
 }
 
 .scroll-down {
-  animation: fade 7s;
+  animation: fade-out 7s;
 }
 
-@keyframes fade {
+@keyframes fade-out {
   0% {
     opacity: 0;
   }
 
   70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade {
+  animation: fade 1s;
+}
+
+@keyframes fade {
+  0% {
     opacity: 0;
   }
 
