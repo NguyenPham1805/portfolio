@@ -1,10 +1,10 @@
-import { FC } from 'react'
-import Image from 'next/image'
-import { SectionProps } from '@tn/shared/types'
 import { projects } from '@tn/shared/constant'
+import { SectionProps } from '@tn/shared/types'
+import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
+import { FC } from 'react'
 import FadeCarousel from '../FadeCarousel'
 import TDCarousel from '../TDCarousel'
-import { useTranslation } from 'next-i18next'
 
 const Project: FC<SectionProps> = () => {
   const { t } = useTranslation('projects')
@@ -53,7 +53,7 @@ const Project: FC<SectionProps> = () => {
               </p>
 
               <div className="flex gap-2 items-center flex-wrap">
-                <h4 className="text-xl">{t('Technologys')}: </h4>
+                <h4 className="text-xl">{t('Technologies')}: </h4>
                 {project.tags.map((tag) => (
                   <span
                     className={`${tag} text-xs sm:text-sm flex items-center px-1 py-[1px] capitalize border`}

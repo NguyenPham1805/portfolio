@@ -1,11 +1,11 @@
+import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { FC, useEffect, useMemo, useState } from 'react'
 import Marquee from 'react-fast-marquee'
-import { useTranslation } from 'next-i18next'
 
-import Typing from '../Typing'
 import { about, imageCarousels } from '@tn/shared/constant'
 import { SectionProps } from '@tn/shared/types'
+import Typing from '../Typing'
 
 const About: FC<SectionProps> = ({ currentIndex }) => {
   const { t } = useTranslation('about')
@@ -53,11 +53,9 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
 
         <Marquee className="flex mt-4" gradientColor={[0, 0, 0]}>
           {imageCarousels.map((image) => (
-            <div
-              className="flex-shrink-0 w-[117px] h-[65px] sm:w-[144px] sm:h-[80px] md:w-[180px] h-md:[100px]"
-              key={image}
-            >
+            <div className="flex-shrink-0" key={image}>
               <Image
+                className="w-full"
                 width={180}
                 height={100}
                 src={image}

@@ -1,10 +1,10 @@
+import { appWithTranslation } from 'next-i18next'
+import nextI18nextConfig from 'next-i18next.config'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Script from 'next/script'
-import { appWithTranslation } from 'next-i18next'
-import nextI18nextConfig from 'next-i18next.config'
 
-import ToastContext from '@tn/store/ToastContext'
+import ToastProvider from '@tn/store/ToastContext'
 import '@tn/styles/style.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -23,15 +23,15 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:description" content="Pham Trung Nguyen Portfolio" />
         <meta property="og:image" content="/avatar.png" />
 
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="TrungNguyen's Portfolio" />
-        <meta property="twitter:description" content="Pham Trung Nguyen Portfolio" />
-        <meta property="twitter:image" content="/avatar.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TrungNguyen's Portfolio" />
+        <meta name="twitter:description" content="Pham Trung Nguyen Portfolio" />
+        <meta name="twitter:image" content="/avatar.png" />
       </Head>
 
-      <ToastContext.Provider value={[]}>
+      <ToastProvider>
         <Component {...pageProps} />
-      </ToastContext.Provider>
+      </ToastProvider>
 
       <Script
         strategy="lazyOnload"

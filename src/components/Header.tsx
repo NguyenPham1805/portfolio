@@ -1,10 +1,10 @@
-import { FC, useEffect, memo, useState, useMemo } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { FC, memo, useEffect, useMemo, useState } from 'react'
 
 import { langs, sections } from '@tn/shared/constant'
-import ClickOutside from './ClickOutside'
 import { useTranslation } from 'next-i18next'
+import ClickOutside from './ClickOutside'
 import ArrowDown from './icons/ArrowDown'
 
 interface HeaderProps {
@@ -131,9 +131,9 @@ const Header: FC<HeaderProps> = ({ section: currentIndex }) => {
           )}
         </div>
 
-        <a href="/TrungNguyenCV.pdf" download="TrungNguyenCV">
+        {/* <a href="/TrungNguyenCV.pdf" download="TrungNguyenCV">
           {t('Download CV')}
-        </a>
+        </a> */}
       </div>
     </nav>
   )

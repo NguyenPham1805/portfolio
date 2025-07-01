@@ -1,14 +1,14 @@
-import { FC, FormEvent, useContext, useState } from 'react'
 import Image from 'next/image'
-import axios from 'axios'
+import { FC, FormEvent, useContext, useState } from 'react'
 
 import { socialLinks } from '@tn/shared/constant'
 import { SectionProps } from '@tn/shared/types'
-import ToastContext from '@tn/store/ToastContext'
+import { ToastContext } from '@tn/store/ToastContext'
+import axios from 'axios'
 import { useTranslation } from 'next-i18next'
 
 const Contact: FC<SectionProps> = () => {
-  const toast = useContext(ToastContext)
+  const { pushToast } = useContext(ToastContext)
   const { t } = useTranslation('contact')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -17,6 +17,7 @@ const Contact: FC<SectionProps> = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSending(true)
     setSending(true)
     try {
       await axios.post(
@@ -27,9 +28,9 @@ const Contact: FC<SectionProps> = () => {
       setName('')
       setEmail('')
       setMessage('')
-      toast.push(t('Email send failed! Please check all field is valid!'))
-    } catch (error) {
-      toast.push('Send successfully, thanks for contacting!')
+      pushToast('Send successfully, thanks for contacting!')
+    } catch {
+      pushToast(t('Email send failed! Please check all field is valid!'))
     } finally {
       setSending(false)
     }
@@ -119,7 +120,7 @@ const Contact: FC<SectionProps> = () => {
             </div>
 
             <button
-              className={`mt-6 flex gap-2 items-center border-quiet-dark border py-1 px-2 sm:py-2 sm:px-4 hover:bg-main-color hover:border-transparent hover:text-dark transition-all ${
+              className={`mt-6 flex gap-2 group items-center border-quiet-dark border py-1 px-2 sm:py-2 sm:px-4 hover:bg-main-color hover:border-transparent hover:text-dark transition-all ${
                 name === '' || email === '' || message === ''
                   ? 'pointer-events-none bg-opacity-60'
                   : ''
@@ -129,7 +130,7 @@ const Contact: FC<SectionProps> = () => {
             >
               {t('Send')}
               {sending && (
-                <div className="border border-transparent border-t-main-color border-b-main-color rounded-full w-4 h-4 spin"></div>
+                <div className="border border-transparent border-t-main-color group-hover:border-t-dark border-b-main-color group-hover:border-b-dark rounded-full w-4 h-4 spin"></div>
               )}
             </button>
           </form>

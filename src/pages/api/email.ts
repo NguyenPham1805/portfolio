@@ -1,6 +1,6 @@
+import { ContactMessage } from '@tn/shared/types'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createTransport, SendMailOptions } from 'nodemailer'
-import { ContactMessage } from '@tn/shared/types'
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, email, message } = JSON.parse(req.body) as ContactMessage
@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     to: process.env.NODE_MAILER_AUTH_USER,
     subject: `From ${name} contact`,
     html: `
-      <b>${name}</b>
+      <b>${name} - ${email}</b>
       <p>${message}</p>
     `,
   }

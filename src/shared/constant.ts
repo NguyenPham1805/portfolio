@@ -1,12 +1,12 @@
-import Banner from '@tn/components/sections/Banner'
-import About from '@tn/components/sections/About'
-import Projects from '@tn/components/sections/Projects'
-import Contact from '@tn/components/sections/Contact'
-import { Project, Section } from './types'
 import Home from '@tn/components/icons/Home'
-import Star from '@tn/components/icons/Star'
-import Rocket from '@tn/components/icons/Rocket'
 import Mail from '@tn/components/icons/Mail'
+import Rocket from '@tn/components/icons/Rocket'
+import Star from '@tn/components/icons/Star'
+import About from '@tn/components/sections/About'
+import Banner from '@tn/components/sections/Banner'
+import Contact from '@tn/components/sections/Contact'
+import Projects from '@tn/components/sections/Projects'
+import { Project, Section } from './types'
 
 export const langs = [
   { locale: 'vi', name: 'Tiếng Việt', thumb: '/vietnamese.jpg' },
@@ -17,13 +17,12 @@ export const imageCarousels = [
   '/carousel/angular.png',
   '/carousel/typescript.png',
   '/carousel/nodejs.png',
+  '/carousel/nestjs.png',
   '/carousel/react.png',
   '/carousel/nextjs.png',
   '/carousel/vue.png',
   '/carousel/firebase.png',
-  '/carousel/tailwindcss.png',
-  '/carousel/vite.png',
-  '/carousel/rxjs.png',
+  '/carousel/net.png',
 ]
 
 export const projects: Project[] = [
@@ -58,20 +57,20 @@ export const projects: Project[] = [
       '/slide/rem-thumb5.PNG',
     ],
   },
-  {
-    title: 'Ebook',
-    classColor: 'text-fuchsia-900',
-    description: 'ebook description',
-    tags: ['nodejs', 'express', 'jwt', 'angular', 'mongoDB', 'typescript'],
-    linkGit: 'https://github.com/NguyenPham1805/express-typescript',
-    thumbs: [
-      '/slide/eyebook-thumb1.PNG',
-      '/slide/eyebook-thumb2.PNG',
-      '/slide/eyebook-thumb3.PNG',
-      '/slide/eyebook-thumb4.PNG',
-      '/slide/eyebook-thumb5.PNG',
-    ],
-  },
+  // {
+  //   title: 'Ebook',
+  //   classColor: 'text-fuchsia-900',
+  //   description: 'ebook description',
+  //   tags: ['nodejs', 'express', 'jwt', 'angular', 'mongoDB', 'typescript'],
+  //   linkGit: 'https://github.com/NguyenPham1805/express-typescript',
+  //   thumbs: [
+  //     '/slide/eyebook-thumb1.PNG',
+  //     '/slide/eyebook-thumb2.PNG',
+  //     '/slide/eyebook-thumb3.PNG',
+  //     '/slide/eyebook-thumb4.PNG',
+  //     '/slide/eyebook-thumb5.PNG',
+  //   ],
+  // },
 ]
 
 export const sections: Section[] = [
