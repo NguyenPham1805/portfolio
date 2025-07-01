@@ -36,7 +36,7 @@ const About: FC<SectionProps> = ({ currentIndex }) => {
             <Typing
               className="text-3xl sm:text-2xl text-main-color"
               wait={title[0].length * 100 + 1000}
-              prefixLenght={6}
+              prefixLenght={7}
               loopDelay={100}
               stepDelay={2000}
               texts={texts}

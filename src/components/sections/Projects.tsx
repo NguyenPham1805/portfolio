@@ -20,15 +20,15 @@ const Project: FC<SectionProps> = () => {
             key={i}
           >
             <div className="flex flex-col sm:w-full md:w-[35%] gap-1 md:gap-4 flex-shrink-0">
-              <h2 className={`text-2xl ${i % 2 !== 0 && 'md:text-right'} ${project.classColor}`}>
+              <h2 className={`text-2xl ${i % 2 !== 0 && 'md:text-justify'} ${project.classColor}`}>
                 {project.title}
               </h2>
 
-              <p className={`text-base sm:text-lg ${i % 2 !== 0 && 'md:text-right'}`}>
+              <p className={`text-base sm:text-lg ${i % 2 !== 0 && 'md:text-justify'}`}>
                 {t(project.description)}
               </p>
 
-              <p className={`text-base sm:text-lg flex gap-1 ${i % 2 !== 0 && 'md:text-right'}`}>
+              <p className={`text-base sm:text-lg flex gap-1 ${i % 2 !== 0 && 'md:text-justify'}`}>
                 <span className="flex-shrink-0">Link demo:</span>
                 <a
                   className="text-main-color clamp hover:underline"
@@ -40,7 +40,7 @@ const Project: FC<SectionProps> = () => {
                 </a>
               </p>
 
-              <p className={`text-base sm:text-lg flex gap-1 ${i % 2 !== 0 && 'md:text-right'}`}>
+              <p className={`text-base sm:text-lg flex gap-1 ${i % 2 !== 0 && 'md:text-justify'}`}>
                 <span className="flex-shrink-0">Link git:</span>
                 <a
                   className="text-main-color clamp hover:underline"
